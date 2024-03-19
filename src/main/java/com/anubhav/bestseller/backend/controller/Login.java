@@ -1,5 +1,6 @@
 package com.anubhav.bestseller.backend.controller;
 
+import com.anubhav.bestseller.backend.contstants.AuthConstants;
 import com.anubhav.bestseller.backend.model.SessionData;
 import com.anubhav.bestseller.backend.service.SessionService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -29,6 +30,7 @@ public class Login {
                 .build()
                 .toUriString();
         model.addAttribute("callBackUrl", baseUrl + "/login/callback");
+        model.addAttribute("clientId", AuthConstants.googleClientId);
         return "login-ui";
     }
 
