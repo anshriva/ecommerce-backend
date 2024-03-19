@@ -1,0 +1,45 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<script>
+
+</script>
+<body>
+<h2>Welcome</h2>
+<table>
+    <tr>
+        <td>User ID:</td>
+        <td th:text="${userId}"></td>
+    </tr>
+    <tr>
+        <td>Email:</td>
+        <td th:text="${email}"></td>
+    </tr>
+    <tr>
+        <td>Is Email Verified:</td>
+        <td th:text="${isEmailVerified} ? 'Yes' : 'No'"></td>
+    </tr>
+    <tr>
+        <td>Name:</td>
+        <td th:text="${name}"></td>
+    </tr>
+    <tr>
+        <td>Picture URL:</td>
+        <td><img th:src="${pictureUrl}" alt="Profile Picture"></td>
+    </tr>
+    <tr>
+        <td>Locale:</td>
+        <td th:text="${locale}"></td>
+    </tr>
+    <tr>
+        <td>Family Name:</td>
+        <td th:text="${familyName}"></td>
+    </tr>
+    <tr>
+        <td>Given Name:</td>
+        <td th:text="${giveName}"></td>
+    </tr>
+</table>
+</body>
+</html>
