@@ -2,6 +2,7 @@ package com.anubhav.bestseller.backend.filters;
 
 
 import com.anubhav.bestseller.backend.contstants.AuthConstants;
+import com.anubhav.bestseller.backend.model.Configuration;
 import com.anubhav.bestseller.backend.model.SessionData;
 import com.anubhav.bestseller.backend.model.SessionDataHolder;
 import com.anubhav.bestseller.backend.service.SessionService;
@@ -25,6 +26,9 @@ public class AuthenticationFilter implements Filter {
     @Autowired
     SessionService sessionService;
 
+    @Autowired
+    Configuration configuration;
+
     private final Set<String> urlsToExclude = new HashSet<>(Arrays.asList("/login", "/login/callback"));
 
     @Override
@@ -42,8 +46,14 @@ public class AuthenticationFilter implements Filter {
             return;
         }
 
-        // check if the session id exists for the given session data
-        SessionData sessionData = this.getSessionData(httpServletRequest);
+        SessionData sessionData = null;
+        if("dev".equalsIgnoreCase(this.configuration.getEnvironment())){
+            sessionData = this.configuration.getMockUser();
+        }
+        else{
+            // check if the session id exists for the given session data
+            sessionData = this.getSessionData(httpServletRequest);
+        }
 
         // if session data is null, redirect to login page
         if(sessionData == null){
